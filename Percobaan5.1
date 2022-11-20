@@ -40,11 +40,11 @@ void LCD_Init (void)
 {
 	LCD_Dir = 0xFF;
 	_delay_ms(20);
-	LCD_Command(0x02);
-	LCD_Command(0x28);
-	LCD_Command(0x0c);
-	LCD_Command(0x06);
-	LCD_Command(0x01);
+	LCD_Command(0x02); //return home mengembalikan ke tampilan bagian awal
+	LCD_Command(0x28); //2 baris, 5x8 Matriks, mode 4bit
+	LCD_Command(0x0c); //Menyalakan display, Cursor mati
+	LCD_Command(0x06); //Geser kursor ke kanan
+	LCD_Command(0x01); //clrscreen (bersihin layar)
 	_delay_ms(2);
 }
 
@@ -69,14 +69,14 @@ void LCD_String_xy (char row, char pos, char *str)
 void LCD_Clear() {
 	LCD_Command (0x01);
 	_delay_ms(2);
-	LCD_Command (0x80);
+	LCD_Command (0x80); //Meletakkan kursor di baris pertama
 }
 
 int main()
 {
 	LCD_Init();
 	LCD_String("Sismik");
-	LCD_Command(0xC0);
+	LCD_Command(0xC0); //Meletakkan kursor di baris kedua
 	LCD_String("Prak");
 	_delay_ms(2000);
 	LCD_Clear();
