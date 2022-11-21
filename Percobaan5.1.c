@@ -59,9 +59,9 @@ void LCD_String (char *str)
 
 void LCD_String_xy (char row, char pos, char *str)
 {
-	if (row == 0 && pos<16)
+	if (row == 0 && pos<8)
 	LCD_Command((pos & 0x0F)|0x80);
-	else if (row == 1 && pos<16)
+	else if (row == 1 && pos<8)
 	LCD_Command((pos & 0x0F)|0xC0);
 	LCD_String(str);
 }
